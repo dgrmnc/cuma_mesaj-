@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hayırlı Cumalar Mesajı</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            background: linear-gradient(45deg, #2980b9, #27ae60, #f39c12);
+            background-size: 600% 600%;
+            animation: backgroundTransition 8s infinite;
+            font-family: 'Arial', sans-serif;
+        }
+
+        @keyframes backgroundTransition {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .path {
+            position: absolute;
+            bottom: 50%;
+            left: 10%;
+            width: 80%;
+            height: 12px;
+            background: linear-gradient(90deg, #34495e, #16a085);
+            border-radius: 6px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .human {
+            position: absolute;
+            bottom: calc(50% + 12px);
+            left: 10%;
+            width: 60px;
+            height: 120px;
+            background: linear-gradient(to bottom, #e74c3c, #c0392b);
+            border-radius: 50% 50% 0 0;
+            animation: moveToBox 5s cubic-bezier(0.5, 1.5, 0.5, 1) forwards;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .human::before {
+            content: '';
+            position: absolute;
+            left: 18px;
+            top: -28px;
+            width: 24px;
+            height: 24px;
+            background-color: #2c3e50;
+            border-radius: 50%;
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .box {
+            position: absolute;
+            bottom: calc(50% - 35px);
+            left: 88%;
+            width: 100px;
+            height: 140px;
+            background: linear-gradient(135deg, #93462f, #6b2e1d);
+            border: 3px solid #073129;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+            transform: rotate(5deg);
+        }
+
+        .message {
+            display: none;
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #2c3e50;
+            text-align: center;
+            animation: fadeIn 2s ease-in-out forwards;
+            position: absolute;
+            bottom: 22%;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: scale(0.8); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        .heart {
+            position: absolute;
+            bottom: -50px;
+            font-size: 2rem;
+            animation: rise 2.5s linear infinite;
+        }
+
+        @keyframes rise {
+            0% {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) scale(0.5);
+                opacity: 0;
+            }
+        }
+
+        @keyframes moveToBox {
+            0% { left: 10%; transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+            100% { left: 88%; transform: translateY(0); }
+        }
+
+        .image {
+            display: none;
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 70%;
+            max-width: 600px;
+            height: auto;
+        }
+
+        
+      .white-light {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.5); 
+            animation: whiteLightAnimation 3s ease-in-out infinite;
+            opacity: 0; 
+            pointer-events: none;
+            z-index: -1; 
+        }
+
+        @keyframes whiteLightAnimation {
+            0% {
+                opacity: 0.4;
+                transform: scale(1) rotate(0deg);
+                box-shadow: 0 0 50px 30px rgba(255, 255, 255, 0.8); 
+            }
+            25% {
+                opacity: 0.8;
+                transform: scale(1.1) rotate(45deg);
+                box-shadow: 0 0 150px 80px rgba(255, 255, 255, 0.9); 
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.2) rotate(90deg);
+                box-shadow: 0 0 250px 120px rgba(255, 255, 255, 1); 
+            }
+            75% {
+                opacity: 0.8;
+                transform: scale(1.1) rotate(135deg);
+                box-shadow: 0 0 150px 80px rgba(255, 255, 255, 0.9);
+            }
+            100% {
+                opacity: 0.4;
+                transform: scale(1) rotate(180deg);
+                box-shadow: 0 0 50px 30px rgba(255, 255, 255, 0.8);
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="path"></div>
+    <div class="human"></div>
+    <div class="box"></div>
+    <div class="message">KUL KADERİNİ KAHPE İSE HAKETTİĞİNİ YAŞAR HADİ HAYIRLI CUMALAR</div>
+    <img src="https://www.evrensel.net/images/840/upload/dosya/173446.jpg" alt="Hayırlı Cumalar Resmi" class="image">
+
+    <script>
+        document.querySelector('.human').addEventListener('animationend', () => {
+            document.querySelector('.path').style.display = 'none';
+            document.querySelector('.human').style.display = 'none';
+            document.querySelector('.box').style.display = 'none';
+
+            setTimeout(() => {
+                const message = document.querySelector('.message');
+                message.style.display = 'block';
+                const image = document.querySelector('.image');
+                image.style.display = 'block';
+                
+                const whiteLight = document.createElement('div');
+                    whiteLight.classList.add('white-light');
+
+                    const imageRect = image.getBoundingClientRect();
+                    whiteLight.style.top = `${imageRect.top}px`;
+                    whiteLight.style.left = `${imageRect.left}px`;
+                    whiteLight.style.width = `${imageRect.width}px`;
+                    whiteLight.style.height = `${imageRect.height}px`;
+
+                    document.body.appendChild(whiteLight);
+
+                createHearts();
+            }, 1000);
+        });
+
+        function createHearts() {
+            const heartInterval = setInterval(() => {
+                for (let i = 0; i < 5; i++) { 
+                    const heart = document.createElement('div');
+                    heart.classList.add('heart');
+                    heart.textContent = '🔥❤️';
+                    heart.style.left = Math.random() * 100 + 'vw'; 
+                    heart.style.animationDuration = Math.random() * 1 + 2 + 's'; 
+
+                    document.body.appendChild(heart);
+
+                    setTimeout(() => {
+                        heart.remove();
+                    }, 2500); // cleaning after 2.5sec
+                }
+
+                
+                heartCount = Math.floor(heartCount * 0.6);
+            }, 90); // tightness of the heart
+
+            // to stop hearts appearing after a while
+            setTimeout(() => {
+                clearInterval(heartInterval);
+            }, 5000); // in this case 5sec
+        }
+    </script>
+
+</body>
+</html>
